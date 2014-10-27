@@ -1,5 +1,6 @@
 require "heroku/command/base"
 require 'open-uri'
+require 'yaml'
 
 class Heroku::Command::Db < Heroku::Command::Base
 
@@ -7,8 +8,7 @@ class Heroku::Command::Db < Heroku::Command::Base
   #
   # Enjoy a slice of data
   #
-  # You'll need a .cake.conf file in your app directory
-  #
+  # You'll need a cake.yml file in your app directory
 
   def sync
     capture
@@ -30,7 +30,7 @@ class Heroku::Command::Db < Heroku::Command::Base
   end
 
   def restore
-    system %{ pg_restore --clean --no-acl --no-owner -d #{local_database} #{backup_location} }
+    `pg_restore --clean --no-acl --no-owner -d #{local_database} #{backup_location}`
   end
 
   def backup_s3_url
@@ -45,16 +45,19 @@ class Heroku::Command::Db < Heroku::Command::Base
     `heroku pgbackups --app #{ app } | grep #{ remote_database }| cut -d " " -f1`.split("\n").last
   end
 
-  # todo don't hardcode this
   def remote_database
-    "HEROKU_POSTGRESQL_CHARCOAL_URL"
+    config['remote_database']
   end
 
   def local_database
-    "polly_dev"
+    config['local_database']
   end
 
   def app
-    "polly-production"
+    config['app']
+  end
+
+  def config
+    @config ||= YAML::load(File.open('cake.yml'))
   end
 end
