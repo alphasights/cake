@@ -2,7 +2,7 @@ require "heroku/command/base"
 require 'open-uri'
 require 'yaml'
 
-class Heroku::Command::Db < Heroku::Command::Base
+class Heroku::Command::Cake < Heroku::Command::Base
 
   # cake:sync
   #
