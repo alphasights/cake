@@ -1,4 +1,5 @@
 require "heroku/command/base"
+require 'open-uri'
 
 class Heroku::Command::Db < Heroku::Command::Base
 
@@ -22,7 +23,10 @@ class Heroku::Command::Db < Heroku::Command::Base
   end
 
   def pull
-    system %{ curl #{ backup_s3_url } > #{ backup_location } }
+    puts "Downloading database from S3..."
+    open(backup_location, 'wb') do |file|
+      file << open(backup_s3_url).read
+    end
   end
 
   def restore
