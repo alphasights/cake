@@ -9,9 +9,11 @@ class Heroku::Command::Cake < Heroku::Command::Base
   # Enjoy a slice of data
   #
   # You'll need a cake.yml file in your app directory
+  #
+  # -c, --capture  # Capture a new copy of the db in question first
 
   def slice
-    capture if options[:capture] || false
+    capture if capture?
     pull
     restore
   end
@@ -20,6 +22,10 @@ class Heroku::Command::Cake < Heroku::Command::Base
 
   def capture
     system %{ heroku pgbackups:capture #{ remote_database } --expire --app #{ app } }
+  end
+
+  def capture?
+    options[:capture] || false
   end
 
   def pull
