@@ -11,7 +11,7 @@ class Heroku::Command::Cake < Heroku::Command::Base
   # You'll need a cake.yml file in your app directory
 
   def sync
-    capture
+    capture if options[:capture] || false
     pull
     restore
   end
