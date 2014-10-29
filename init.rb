@@ -10,6 +10,7 @@ class Heroku::Command::Cake < Heroku::Command::Base
   #
   # You'll need a cake.yml file in your app directory
   #
+  # -c, --capture  # Capture a new copy of the db in question first
 
   def slice
     capture if capture?
