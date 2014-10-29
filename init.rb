@@ -10,7 +10,7 @@ class Heroku::Command::Cake < Heroku::Command::Base
   #
   # You'll need a cake.yml file in your app directory
 
-  def sync
+  def slice
     capture if options[:capture] || false
     pull
     restore
