@@ -36,7 +36,7 @@ class Heroku::Command::Cake < Heroku::Command::Base
   end
 
   def restore
-    `pg_restore --clean --no-acl --no-owner -d #{local_database} #{backup_location}`
+    `pg_restore --clean --no-acl --no-owner --jobs#{cpu_cores} -d #{local_database} #{backup_location}`
   end
 
   def backup_s3_url
@@ -61,6 +61,10 @@ class Heroku::Command::Cake < Heroku::Command::Base
 
   def app
     config['app']
+  end
+
+  def cpu_cores
+    Integer(`sysctl -n hw.ncpu`) rescue 3
   end
 
   def config
