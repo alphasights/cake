@@ -15,6 +15,7 @@ class Heroku::Command::Cake < Heroku::Command::Base
   def slice
     capture if capture?
     pull
+    terminate_all_connections
     restore
   end
 
@@ -33,6 +34,14 @@ class Heroku::Command::Cake < Heroku::Command::Base
     open(backup_location, 'wb') do |file|
       file << open(backup_s3_url).read
     end
+  end
+
+  def terminate_all_connections
+    `cat <<-EOF | psql -d #{local_database}
+       SELECT pg_terminate_backend(pid)
+       FROM pg_stat_activity
+       WHERE pid <> pg_backend_pid();
+     EOF`
   end
 
   def restore
