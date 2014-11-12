@@ -25,7 +25,7 @@ class Heroku::Command::Cake < Heroku::Command::Base
   end
 
   def capture?
-    options[:capture] || false
+    options.fetch(:capture, false)
   end
 
   def pull
