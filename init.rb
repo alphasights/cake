@@ -37,11 +37,7 @@ class Heroku::Command::Cake < Heroku::Command::Base
   end
 
   def terminate_all_connections
-    `cat <<-EOF | psql -d #{local_database}
-       SELECT pg_terminate_backend(pid)
-       FROM pg_stat_activity
-       WHERE pid <> pg_backend_pid();
-     EOF`
+    `psql -d #{local_database} -c 'SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE pid <> pg_backend_pid();'`
   end
 
   def restore
