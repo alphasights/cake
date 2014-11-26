@@ -16,6 +16,7 @@ class Heroku::Command::Cake < Heroku::Command::Base
     capture if capture?
     pull
     terminate_all_connections
+    drop_then_create
     restore
   end
 
@@ -38,6 +39,10 @@ class Heroku::Command::Cake < Heroku::Command::Base
 
   def terminate_all_connections
     `psql -d #{local_database} -c 'SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE pid <> pg_backend_pid();'`
+  end
+
+  def drop_then_create
+    `bundle exec rake db:drop && bundle exec rake db:create`
   end
 
   def restore
