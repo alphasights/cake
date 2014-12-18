@@ -79,5 +79,7 @@ class Heroku::Command::Cake < Heroku::Command::Base
 
   def config
     @config ||= YAML::load(File.open('cake.yml'))
+  rescue Errno::ENOENT
+    abort "Error: Missing cake.yml file"
   end
 end
