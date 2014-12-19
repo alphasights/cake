@@ -1,0 +1,3 @@
+remote_database: HEROKU_POSTGRESQL_PURPLE_URL
+local_database: local-database
+app: herokuapp-name
