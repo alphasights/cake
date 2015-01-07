@@ -1,7 +1,7 @@
 Cake
 ====
 
-Cake is a heroku plugin that simplfies downloading and restoring the latest backup of your postgres database.
+Cake is a heroku plugin that simplfies downloading and restoring the latest backup of your postgres database locally.
 
 ## Usage
 
