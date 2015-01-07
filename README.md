@@ -5,7 +5,9 @@ Cake is a heroku plugin that simplfies downloading and restoring the latest back
 
 ## Usage
 
-``` heroku cake:slice ```
+``` $ cd ~\Repositories\your-project ```
+
+``` $ heroku cake:slice ```
 
 ## Installation
 
@@ -13,14 +15,14 @@ Cake is a heroku plugin that simplfies downloading and restoring the latest back
 
 ### cakefile
 
-You'll need to create a cake.yml in each repository that you want to restore. It requires three pieces of information.
+You'll need to create a cake.yml in each repository that you want to restore. It requires three pieces of information. Checkout example.cake.yml.
 
-The name of the remote database you want to find a backup for
+The name of the remote database you want to find a backup for (with _URL suffix)
 - ``` remote_database: HEROKU_POSTGRESQL_PURPLE_URL ```
 
 The name of the local database you want to restore to
-- ``` local_database: database-name ```
+- ``` local_database: local-database-name ```
 
-The name of the app where the database is stored
+The name of the app where the database is located
 - ``` app: herokuapp-name ```
 
