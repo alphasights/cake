@@ -9,7 +9,7 @@ Navigate to your repository
 
 ``` $ cd ~\Repositories\your-project ```
 
-Pull some the data :warning:  Destructive
+Pull the data :warning:  Destructive
 
 ``` $ heroku cake:slice ```
 
