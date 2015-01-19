@@ -5,9 +5,15 @@ Cake is a heroku plugin that simplfies downloading and restoring the latest back
 
 ## Usage
 
+Navigate to your repository
+
 ``` $ cd ~\Repositories\your-project ```
 
+Pull some the data :warning:  Destructive
+
 ``` $ heroku cake:slice ```
+
+Enjoy your cake ! :cake:  :beer:
 
 ## Installation
 
@@ -25,4 +31,3 @@ The name of the local database you want to restore to
 
 The name of the app where the database is located
 - ``` app: herokuapp-name ```
-
