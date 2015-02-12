@@ -47,6 +47,7 @@ class Heroku::Command::Cake < Heroku::Command::Base
 
   def restore
     `pg_restore --no-acl --no-owner --jobs #{cpu_cores} -d #{local_database} #{backup_location}`
+    puts "Restore successful, enjoy your cake!"
   end
 
   def backup_s3_url
