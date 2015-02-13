@@ -4,7 +4,7 @@ require 'yaml'
 
 class Heroku::Command::Cake < Heroku::Command::Base
 
-  # cake:sync
+  # cake:slice
   #
   # Enjoy a slice of data
   #
