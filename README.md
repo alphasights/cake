@@ -23,8 +23,8 @@ Enjoy your cake ! :cake:  :beer:
 
 You'll need to create a cake.yml in each repository that you want to restore. It requires three pieces of information. Checkout example.cake.yml.
 
-The name of the remote database you want to find a backup for (with _URL suffix)
-- ``` remote_database: HEROKU_POSTGRESQL_PURPLE_URL ```
+The colour of the remote database you want to find a backup for (HEROKU_POSTGRESQL_COLOUR_URL)
+- ``` remote_database: PURPLE ```
 
 The name of the local database you want to restore to
 - ``` local_database: local-database-name ```
