@@ -59,7 +59,7 @@ class Heroku::Command::Cake < Heroku::Command::Base
   end
 
   def backup_id
-    `heroku pg:backups --app #{app} 2> /dev/null | ag -i "^(?=.*\bfinished\b)(?=.*\b#{remote_database}\b).*$" | head -1 | cut -d " " -f 1`.chomp
+    `heroku pg:backups --app #{app} 2> /dev/null | awk '{ if($5 == "Finished" && $NF == "#{remote_database}") print $1 }' | head -1`.chomp
   end
 
   def remote_database
