@@ -59,7 +59,7 @@ class Heroku::Command::Cake < Heroku::Command::Base
   end
 
   def backup_id
-    id = `heroku pg:backups --app #{app} | grep #{remote_database}| cut -d " " -f1`.split("\n").first
+    `heroku pg:backups --app #{app} 2> /dev/null | awk '{ if($5 == "Finished" && $NF == "#{remote_database}") print $1 }' | head -1`.chomp
   end
 
   def remote_database
