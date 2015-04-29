@@ -42,7 +42,7 @@ class Heroku::Command::Cake < Heroku::Command::Base
   end
 
   def drop_then_create
-    `bundle exec rake db:drop && bundle exec rake db:create`
+    `RAILS_ENV=development bundle exec rake db:drop && bundle exec rake db:create`
   end
 
   def restore
