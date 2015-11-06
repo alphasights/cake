@@ -11,6 +11,7 @@ class Heroku::Command::Cake < Heroku::Command::Base
   # You'll need a cake.yml file in your app directory
   #
   # -c, --capture  # Capture a new copy of the db in question first
+  # -d, --database  # Override the cake.yml with a db of your choice
 
   def slice
     capture if capture?
@@ -63,7 +64,7 @@ class Heroku::Command::Cake < Heroku::Command::Base
   end
 
   def remote_database
-    config['remote_database']
+    options.fetch(:database, config['remote_database'])
   end
 
   def local_database
