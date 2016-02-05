@@ -60,7 +60,9 @@ class Heroku::Command::Cake < Heroku::Command::Base
   end
 
   def backup_id
-    `heroku pg:backups --app #{app} 2> /dev/null | awk '{ if($5 == "Finished" && $NF == "#{remote_database}") print $1 }' | head -1`.chomp
+    id = `heroku pg:backups --app #{app} 2> /dev/null | awk '{ if($5 == "Completed" && $NF == "#{remote_database}") print $1 }' | head -1`.chomp
+    raise "Not able to identify latest backup" unless id.size > 0
+    id
   end
 
   def remote_database
