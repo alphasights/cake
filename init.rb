@@ -24,7 +24,7 @@ class Heroku::Command::Cake < Heroku::Command::Base
   private
 
   def capture
-    system %{ heroku pg:backups capture #{remote_database} --app #{app} }
+    system %{ heroku pg:backups:capture #{remote_database} --app #{app} }
   end
 
   def capture?
@@ -52,7 +52,7 @@ class Heroku::Command::Cake < Heroku::Command::Base
   end
 
   def backup_s3_url
-    `heroku pg:backups public-url #{backup_id} --app cake-data | grep http`.gsub("'", "").strip
+    `heroku pg:backups:public-url #{backup_id} --app cake-data | grep http`.gsub("'", "").strip
   end
 
   def backup_location
